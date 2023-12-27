@@ -7,7 +7,7 @@ export default function Home() {
 
   const getData = async () => {
     const res = await fetch(
-      'http://localhost:8000/book/yes24/status/?year=2023&month=12&day=22'
+      'http://localhost:8000/book/daterange?year=2023&month=12&day=22'
     ).then((res) => {
       return res.json();
     });
@@ -21,4 +21,14 @@ export default function Home() {
   useEffect(() => {
     getData();
   }, []);
+
+  return data.map((d) => {
+    return (
+      <>
+        <p>{d.book.author}</p>
+        <p>{d.book.title}</p>
+        <p>{d.rank}</p>
+      </>
+    );
+  });
 }
